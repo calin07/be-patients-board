@@ -7,4 +7,4 @@ Patients Board backend project for team 3
 [Figma app](https://www.figma.com/files/project/85287217/Team-project?fuid=1227273931196471268).  
 
 ## Board
-[Trello board]().
+[Trello board](https://trello.com/invite/b/rmskdlf9/ATTI0a68db0f5b962c5a24b54806a31c6bb681E43492/be-patients-board-team-3).
