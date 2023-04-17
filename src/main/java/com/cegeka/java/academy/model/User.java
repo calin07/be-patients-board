@@ -17,16 +17,16 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 50)
     private String username;
 
-    @Column(name = "email")
+    @Column(name = "email", length = 50, unique = true)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", length = 50)
     private String password;
 
     @OneToOne
     @JoinColumn(name = "specialityId")
-    private Speciality specialityId;
+    private Speciality speciality;
 }

@@ -11,15 +11,15 @@ import lombok.*;
 @Entity
 @Table(name = "speciality")
 public class Speciality {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "id")
-        private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-        @Column(name = "name")
-        private String name;
+    @Column(name = "name", length = 50)
+    private String name;
 
-        @OneToOne
-        @JoinColumn(name = "functionId")
-        private Function functionId;
+    @ManyToOne
+    @JoinColumn(name = "functionId")
+    private Function function;
 }

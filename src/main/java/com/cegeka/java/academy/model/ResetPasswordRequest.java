@@ -20,7 +20,7 @@ public class ResetPasswordRequest {
     @Column(name = "requestId")
     private String requestId = UUID.randomUUID().toString();
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "userId")
-    private User userId;
+    private User user;
 }

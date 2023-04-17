@@ -11,11 +11,11 @@ import lombok.*;
 @Entity
 @Table(name = "function")
 public class Function {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "id")
-        private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-        @Column(name = "name")
-        private String name;
+    @Column(name = "name", length = 50)
+    private String name;
 }
