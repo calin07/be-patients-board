@@ -62,4 +62,14 @@ public class User {
     public void setSpeciality(Speciality speciality) {
         this.speciality = speciality;
     }
+
+    private String confirmPassword;
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 }
