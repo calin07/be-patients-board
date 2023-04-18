@@ -1,4 +1,4 @@
-CREATE TABLE user_(
+CREATE TABLE UserDetails(
 	id int NOT NULL PRIMARY KEY,
 	name varchar(50),
 	email varchar(50) unique,
@@ -23,7 +23,7 @@ CREATE TABLE ResetPasswordRequest(
 	id int NOT NULL PRIMARY KEY,
 	requestId UUID,
 	userId int,
-	FOREIGN KEY(userId) REFERENCES user_(id)
+	FOREIGN KEY(userId) REFERENCES UserDetails(id)
 );
 
 insert into Function(id,name) VALUES (1,'Neurologie');
@@ -43,4 +43,4 @@ insert into Speciality(id,name,functionId) VALUES (8,'Chirurgie oncologică',4);
 insert into Speciality(id,name,functionId) VALUES (9,'Neonatologie',5);
 insert into Speciality(id,name,functionId) VALUES (10,'Endocrinologie pediatrică',5);
 
-insert into user_(id,name,email,password,specialityId) VALUES (1,'Calin','calin@gmail.com','sdfsfd',1);
+insert into UserDetails(id,name,email,password,specialityId) VALUES (1,'Calin','calin@gmail.com','sdfsfd',1);
