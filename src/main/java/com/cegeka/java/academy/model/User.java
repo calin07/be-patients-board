@@ -9,7 +9,7 @@ import lombok.*;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "user")
+@Table(name = "UserDetails")
 public class User {
 
     @Id
@@ -18,7 +18,7 @@ public class User {
     private Long id;
 
     @Column(name = "name", length = 50)
-    private String username;
+    private String name;
 
     @Column(name = "email", length = 50, unique = true)
     private String email;

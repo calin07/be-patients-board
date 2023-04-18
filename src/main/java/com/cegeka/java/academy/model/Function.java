@@ -9,7 +9,7 @@ import lombok.*;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "function")
+@Table(name = "Function")
 public class Function {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

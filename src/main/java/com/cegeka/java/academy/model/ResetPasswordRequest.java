@@ -10,7 +10,7 @@ import java.util.UUID;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "reset_password_request")
+@Table(name = "ResetPasswordRequest")
 public class ResetPasswordRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
