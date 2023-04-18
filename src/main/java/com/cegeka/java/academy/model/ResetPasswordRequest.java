@@ -1,14 +1,7 @@
 package com.cegeka.java.academy.model;
-
 import jakarta.persistence.*;
-import lombok.*;
 import java.util.UUID;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Entity
 @Table(name = "ResetPasswordRequest")
 public class ResetPasswordRequest {
@@ -23,4 +16,28 @@ public class ResetPasswordRequest {
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
