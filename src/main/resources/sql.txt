@@ -1,0 +1,46 @@
+CREATE TABLE UserDetails(
+	id int NOT NULL PRIMARY KEY,
+	name varchar(50),
+	email varchar(50) unique,
+	password varchar(50),
+	specialityId int,
+	FOREIGN KEY(specialityId) REFERENCES Speciality(id)
+);
+
+CREATE TABLE Speciality(
+	id int NOT NULL PRIMARY KEY,
+	name varchar(50),
+	functionId int,
+	FOREIGN KEY(functionId) REFERENCES Function(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Function(
+	id int NOT NULL PRIMARY KEY,
+	name varchar(50)
+);
+
+CREATE TABLE ResetPasswordRequest(
+	id int NOT NULL PRIMARY KEY,
+	requestId UUID,
+	userId int,
+	FOREIGN KEY(userId) REFERENCES UserDetails(id)
+);
+
+insert into Function(id,name) VALUES (1,'Neurologie');
+insert into Function(id,name) VALUES (2,'Cardiologie');
+insert into Function(id,name) VALUES (3,'Ortopedie');
+insert into Function(id,name) VALUES (4,'Oncologie');
+insert into Function(id,name) VALUES (5,'Pediatrie');
+
+insert into Speciality(id,name,functionId) VALUES (1,'Neuroradiologie',1);
+insert into Speciality(id,name,functionId) VALUES (2,'Neurochirurgie',1);
+insert into Speciality(id,name,functionId) VALUES (3,'Electrofiziologie cardiacă',2);
+insert into Speciality(id,name,functionId) VALUES (4,'Chirurgie cardiacă',2);
+insert into Speciality(id,name,functionId) VALUES (5,'Chirurgie a mâinii și încheieturii mâinii',3);
+insert into Speciality(id,name,functionId) VALUES (6,'Chirurgie a șoldului și a genunchiului',3);
+insert into Speciality(id,name,functionId) VALUES (7,'Radioterapie',4);
+insert into Speciality(id,name,functionId) VALUES (8,'Chirurgie oncologică',4);
+insert into Speciality(id,name,functionId) VALUES (9,'Neonatologie',5);
+insert into Speciality(id,name,functionId) VALUES (10,'Endocrinologie pediatrică',5);
+
+insert into UserDetails(id,name,email,password,specialityId) VALUES (1,'Calin','calin@gmail.com','sdfsfd',1);
