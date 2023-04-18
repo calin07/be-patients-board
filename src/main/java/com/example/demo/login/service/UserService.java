@@ -33,11 +33,8 @@ public class UserService {
             Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(secret),
                     SignatureAlgorithm.HS256.getJcaName());
             String jwt= Jwts.builder()
-                    .claim("id",user.get().getPassword())
-                    .claim("name",user.get().getName())
                     .claim("email",user.get().getEmail())
                     .claim("password",user.get().getPassword())
-                    .claim("speciality",user.get().getSpeciality())
                     .setSubject("user")
                     .setIssuedAt(Date.from(Instant.now()))
                     .setExpiration(Date.from(Instant.now().plus(5l, ChronoUnit.MINUTES)))
