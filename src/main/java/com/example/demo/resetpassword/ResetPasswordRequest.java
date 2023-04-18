@@ -1,17 +1,11 @@
 package com.example.demo.resetpassword;
 
 public class ResetPasswordRequest {
-    private String email;
-    private String requestId;
+    private final String requestId;
     private String newPassword;
 
-    public ResetPasswordRequest(String email, String requestId) {
-        this.email = email;
+    public ResetPasswordRequest(String requestId) {
         this.requestId = requestId;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public String getRequestId() {

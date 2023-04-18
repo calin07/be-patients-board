@@ -18,14 +18,7 @@ public class ResetPasswordController {
     @PutMapping("/user/reset-password")
     public ResponseEntity resetPassword(@RequestBody ResetPasswordRequest request) {
         try {
-            // Cautam cererea de resetare a parolei dupa requestId
-            ResetPassword resetPassword = resetPasswordService.findByRequestId(request.getRequestId());
-
-            // Actualizam parola utilizatorului
-            resetPasswordService.updatePassword(resetPassword.getUser(), request.getNewPassword());
-
-            // Salvam parola noua in baza de date
-            resetPasswordService.savePassword(resetPassword.getUser());
+            resetPasswordService.resetPassword(request);
 
             // Returnam un raspuns cu status 200 in caz de succes
             return ResponseEntity.ok().build();
@@ -34,4 +27,5 @@ public class ResetPasswordController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
 }
