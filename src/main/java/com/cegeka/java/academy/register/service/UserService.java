@@ -1,6 +1,9 @@
 package com.cegeka.java.academy.register.service;
 
 import com.cegeka.java.academy.model.User;
+import com.cegeka.java.academy.register.exception.ConfirmPasswordException;
+import com.cegeka.java.academy.register.exception.InvalidEmailException;
+import com.cegeka.java.academy.register.exception.InvalidPasswordException;
 import com.cegeka.java.academy.register.exception.UserException;
 import com.cegeka.java.academy.register.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +31,15 @@ public class UserService {
 
     private void validateUser(User user) throws UserException {
         if (userRepository.existsByEmail(user.getEmail())) {
-            throw new UserException.InvalidEmailException("An account with this email address already exists. " +
+            throw new InvalidEmailException("An account with this email address already exists. " +
                     "Please try logging in or use a different email address");
         }
         if (!user.getPassword().equals(user.getConfirmPassword())) {
-            throw new UserException.ConfirmPasswordException("Passwords do not match. " +
+            throw new ConfirmPasswordException("Passwords do not match. " +
                     "Please make sure you've entered the same password in both fields");
         }
         if (user.getPassword().length() < MIN_PASSWORD_LENGTH) {
-            throw new UserException.InvalidPasswordException("Password must have at least " + MIN_PASSWORD_LENGTH + " characters");
+            throw new InvalidPasswordException("Password must have at least " + MIN_PASSWORD_LENGTH + " characters");
         }
     }
 }
