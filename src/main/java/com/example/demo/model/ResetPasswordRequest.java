@@ -10,7 +10,7 @@ public class ResetPasswordRequest {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "requestId", columnDefinition = "BINARY(16)")
+    @Column(name = "requestId")
     private UUID requestId = UUID.randomUUID();
 
     @ManyToOne
