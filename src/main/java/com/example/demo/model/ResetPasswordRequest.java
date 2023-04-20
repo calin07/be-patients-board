@@ -10,8 +10,8 @@ public class ResetPasswordRequest {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "requestId")
-    private String requestId = UUID.randomUUID().toString();
+    @Column(name = "requestId", columnDefinition = "BINARY(16)")
+    private UUID requestId = UUID.randomUUID();
 
     @ManyToOne
     @JoinColumn(name = "userId")
@@ -25,11 +25,11 @@ public class ResetPasswordRequest {
         this.id = id;
     }
 
-    public String getRequestId() {
+    public UUID getRequestId() {
         return requestId;
     }
 
-    public void setRequestId(String requestId) {
+    public void setRequestId(UUID requestId) {
         this.requestId = requestId;
     }
 
