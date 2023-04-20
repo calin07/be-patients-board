@@ -1,4 +1,4 @@
-package com.cegeka.java.academy.register.security;
+package com.example.demo.register.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.cegeka.java.academy.register.exception;
+package com.example.demo.register.exception;
 
 public class InvalidEmailException extends UserException {
     public InvalidEmailException(String message) {

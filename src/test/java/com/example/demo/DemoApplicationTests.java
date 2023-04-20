@@ -1,10 +1,10 @@
-package com.cegeka.java.academy;
+package com.example.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PatientsBoardMainTests {
+class DemoApplicationTests {
 
 	@Test
 	void contextLoads() {

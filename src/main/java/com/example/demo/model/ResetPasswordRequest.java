@@ -1,4 +1,4 @@
-package com.cegeka.java.academy.model;
+package com.example.demo.model;
 import jakarta.persistence.*;
 import java.util.UUID;
 

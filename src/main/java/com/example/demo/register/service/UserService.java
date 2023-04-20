@@ -1,11 +1,11 @@
-package com.cegeka.java.academy.register.service;
+package com.example.demo.register.service;
 
-import com.cegeka.java.academy.model.User;
-import com.cegeka.java.academy.register.exception.ConfirmPasswordException;
-import com.cegeka.java.academy.register.exception.InvalidEmailException;
-import com.cegeka.java.academy.register.exception.InvalidPasswordException;
-import com.cegeka.java.academy.register.exception.UserException;
-import com.cegeka.java.academy.register.repository.UserRepository;
+import com.example.demo.model.User;
+import com.example.demo.register.exception.ConfirmPasswordException;
+import com.example.demo.register.exception.InvalidEmailException;
+import com.example.demo.register.exception.InvalidPasswordException;
+import com.example.demo.register.exception.UserException;
+import com.example.demo.register.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

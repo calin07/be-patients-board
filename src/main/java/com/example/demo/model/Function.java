@@ -1,9 +1,9 @@
-package com.cegeka.java.academy.model;
+package com.example.demo.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Speciality")
-public class Speciality {
+@Table(name = "Function")
+public class Function {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -11,10 +11,6 @@ public class Speciality {
 
     @Column(name = "name", length = 50)
     private String name;
-
-    @ManyToOne
-    @JoinColumn(name = "functionId")
-    private Function function;
 
     public Long getId() {
         return id;
@@ -30,13 +26,5 @@ public class Speciality {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Function getFunction() {
-        return function;
-    }
-
-    public void setFunction(Function function) {
-        this.function = function;
     }
 }
