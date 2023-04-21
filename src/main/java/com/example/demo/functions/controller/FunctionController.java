@@ -13,9 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/functions")
+@RequestMapping("/user")
 public class FunctionController {
 
     private final FunctionService functionService;
@@ -24,8 +25,8 @@ public class FunctionController {
         this.functionService = functionService;
     }
 
-    @GetMapping("/get")
-    public List<Function> functions() {
+    @GetMapping("/functions")
+    public List<Map<String, Object>> functions() {
         return functionService.getFunctions();
     }
 }
