@@ -33,7 +33,7 @@ public class ResetPasswordService {
             passwordRequestRepository.save(passwordRequest);
             String link="http://localhost:8090/user/reset-password?requestId="+requestId;
             String text="<p>Pentru resetarea parolei,va rugam sa accesati acest <a href=\"" + link + "\">" + "link" + "</a>.</p>";
-            emailSenderService.sendEmail(email,"Reset Password",link);
+            emailSenderService.sendEmail(email,"Reset Password",text);
         }
     }
 }
