@@ -19,8 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 public class DemoApplication {
 
-	@Autowired
-	private EmailSenderService emailSenderService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
