@@ -1,6 +1,4 @@
 package com.example.demo.login.service;
-
-import com.example.demo.login.entity.User;
 import com.example.demo.login.exception.UserException;
 import com.example.demo.login.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
@@ -8,7 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import com.example.demo.model.User;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.time.Instant;

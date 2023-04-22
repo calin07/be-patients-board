@@ -1,7 +1,7 @@
 package com.example.demo.resetPasswordRequest.service;
-import com.example.demo.login.entity.ResetPasswordRequest;
-import com.example.demo.login.entity.User;
 import com.example.demo.login.repository.UserRepository;
+import com.example.demo.model.ResetPasswordRequest;
+import com.example.demo.model.User;
 import com.example.demo.resetPasswordRequest.exception.ResetPasswordException;
 import com.example.demo.resetPasswordRequest.repository.ResetPasswordRequestRepository;
 import jakarta.mail.MessagingException;
