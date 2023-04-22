@@ -51,7 +51,7 @@ public class Patient {
     @JoinColumn(name = "roomId")
     private Room room;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "diagnosisId")
     private Diagnosis diagnosis;
 
