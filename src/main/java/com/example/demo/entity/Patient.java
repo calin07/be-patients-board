@@ -59,6 +59,7 @@ public class Patient {
     @JoinColumn(name = "surgeryDetailsId")
     private PatientSurgeryDetails surgeryDetails;
 
+
     @OneToOne
     @JoinColumn(name = "historyDetailsId")
     private PatientHistoryDetails patientHistoryDetails;
