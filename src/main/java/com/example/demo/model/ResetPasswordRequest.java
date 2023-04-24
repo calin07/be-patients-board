@@ -1,10 +1,13 @@
 package com.example.demo.model;
+
 import jakarta.persistence.*;
+
 import java.util.UUID;
 
 @Entity
 @Table(name = "ResetPasswordRequest")
 public class ResetPasswordRequest {
+    private String newPassword;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -16,6 +19,27 @@ public class ResetPasswordRequest {
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
+
+    public ResetPasswordRequest(UUID requestId) {
+        this.requestId = requestId;
+    }
+
+    public ResetPasswordRequest(UUID requestId, String newPassword) {
+        this.requestId = requestId;
+        this.newPassword = newPassword;
+    }
+
+    public ResetPasswordRequest() {
+
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
 
     public Long getId() {
         return id;
