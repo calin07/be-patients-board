@@ -1,4 +1,5 @@
 package com.example.demo.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +13,7 @@ public class Speciality {
     @Column(name = "name", length = 50)
     private String name;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "functionId")
     private Function function;

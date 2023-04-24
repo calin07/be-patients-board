@@ -26,7 +26,7 @@ public class FunctionController {
     }
 
     @GetMapping("/functions")
-    public List<Map<String, Object>> functions() {
+    public List<Function> functions() {
         return functionService.getFunctions();
     }
 }
