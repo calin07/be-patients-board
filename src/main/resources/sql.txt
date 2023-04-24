@@ -15,7 +15,7 @@ CREATE TABLE Speciality(
 );
 
 CREATE TABLE Function(
-	id int NOT NULL PRIMARY KEY,ng for pgAdmin 4 t
+	id int NOT NULL PRIMARY KEY,
 	name varchar(50)
 );
 
