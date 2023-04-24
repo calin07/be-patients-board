@@ -44,3 +44,87 @@ insert into Speciality(id,name,functionId) VALUES (9,'Neonatologie',5);
 insert into Speciality(id,name,functionId) VALUES (10,'Endocrinologie pediatrică',5);
 
 insert into UserDetails(id,name,email,password,specialityId) VALUES (1,'Calin','calin@gmail.com','sdfsfd',1);
+
+Create table Diagnosis(
+	id int NOT NULL PRIMARY KEY,
+	initalDiagnosis varchar(50),
+	seventyTwoHourDiagnosis varchar(50),
+	finalDiagnosis varchar(50)
+);
+
+Create table PatientSurgeryDetails(
+	id int NOT NULL PRIMARY KEY,
+	teamOfMedics varchar(50),
+	details varchar(50),
+	Date date
+);
+
+Create table PatientHistoryDetails(
+	id int NOT NULL PRIMARY KEY,
+	heredoCollateralAntecedents varchar(50),
+	livingConditions varchar(50),
+	behaviors varchar(50),
+	backgroundMedication varchar(50),
+	diseaseHistory varchar(50),
+	generalClinicalExamination varchar(50)
+) ;
+
+Create table PatientEvolution(
+	id int NOT NULL PRIMARY KEY,
+	evolutionDescription varchar(50),
+	fromDate date,
+	toDate date,
+	evolutionId int,
+	FOREIGN KEY(evolutionId) REFERENCES Patient(id) ON DELETE CASCADE
+
+);
+
+Create table InsuranceType(
+	id int NOT NULL PRIMARY KEY,
+	type varchar(50)
+);
+
+Create table InsuranceStatus(
+	id int NOT NULL PRIMARY KEY,
+	status varchar(50)
+);
+
+Create table AdmissionType(
+	id int NOT NULL PRIMARY KEY,
+	type varchar(50)
+);
+
+Create table Room(
+	id int NOT NULL PRIMARY KEY,
+	name varchar(50),
+	specialityId int,
+	FOREIGN KEY(specialityId) REFERENCES Speciality(id) ON DELETE CASCADE
+);
+
+Create table Patient(
+	id int NOT NULL PRIMARY KEY,
+	firstName varchar(50) NOT NULL,
+	lastName varchar(50) NOT NULL,
+	gender varchar(50) NOT NULL,
+	birthDate date NOT NULL,
+	address varchar(50) NOT NULL,
+	personalNumericCode int unique NOT NULL,
+	idSeriesAndNumber int NOT NULL,
+	typeOfInsuranceId int,
+	FOREIGN KEY(typeOfInsuranceId) REFERENCES InsuranceType(id) ON DELETE CASCADE,
+	insuranceStatusId int,
+	FOREIGN KEY(insuranceStatusId) REFERENCES InsuranceStatus(id) ON DELETE CASCADE,
+	typeOfAdmissionId int,
+	FOREIGN KEY(typeOfAdmissionId) REFERENCES AdmissionType(id) ON DELETE CASCADE,
+	specialityId int,
+	FOREIGN KEY(specialityId) REFERENCES Speciality(id) ON DELETE CASCADE,
+	roomId int,
+	FOREIGN KEY(roomId) REFERENCES Room(id) ON DELETE CASCADE,
+	diagnosisId int,
+	FOREIGN KEY(diagnosisId) REFERENCES Diagnosis(id) ON DELETE CASCADE,
+	surgeryDetailsId int,
+	FOREIGN KEY(surgeryDetailsId) REFERENCES PatientSurgeryDetails(id) ON DELETE CASCADE,
+	historyDetailsId int,
+	FOREIGN KEY(historyDetailsId) REFERENCES PatientHistoryDetails(id) ON DELETE CASCADE
+);
+
