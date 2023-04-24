@@ -1,5 +1,8 @@
-package com.example.demo.resetpassword;// Importam clasele necesare
+package com.example.demo.resetpassword.controller;// Importam clasele necesare
 
+import com.example.demo.model.ResetPasswordRequest;
+import com.example.demo.resetpassword.exception.ResetPasswordException;
+import com.example.demo.resetpassword.service.ResetPasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

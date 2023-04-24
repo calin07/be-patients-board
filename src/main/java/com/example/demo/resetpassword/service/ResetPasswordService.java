@@ -1,9 +1,15 @@
-package com.example.demo.resetpassword;
+package com.example.demo.resetpassword.service;
 
+import com.example.demo.model.ResetPasswordRequest;
+import com.example.demo.model.User;
+import com.example.demo.register.repository.UserRepository;
+import com.example.demo.resetpassword.exception.ResetPasswordException;
+import com.example.demo.resetpassword.repository.ResetPasswordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ResetPasswordService {
@@ -17,9 +23,9 @@ public class ResetPasswordService {
     private UserRepository userRepository;
 
     // Metoda pentru a cauta cererea de resetare a parolei dupa requestId
-    private ResetPassword findByRequestId(String requestId) throws ResetPasswordException {
+    private ResetPasswordRequest findByRequestId(UUID requestId) throws ResetPasswordException {
         // Cautam cererea de resetare a parolei in baza de date
-        Optional<ResetPassword> optionalResetPassword = resetPasswordRepository.findByRequestId(requestId);
+        Optional<ResetPasswordRequest> optionalResetPassword = resetPasswordRepository.findByRequestId(requestId);
 
         // Verificam daca cererea a fost gasita in baza de date
         if (optionalResetPassword.isPresent()) {
@@ -67,7 +73,7 @@ public class ResetPasswordService {
 
     public void resetPassword(ResetPasswordRequest request) throws ResetPasswordException {
         // Cautam cererea de resetare a parolei dupa requestId
-        ResetPassword resetPassword = findByRequestId(request.getRequestId());
+        ResetPasswordRequest resetPassword = findByRequestId(request.getRequestId());
 
         // Actualizam parola utilizatorului
         updatePassword(resetPassword.getUser(), request.getNewPassword());
