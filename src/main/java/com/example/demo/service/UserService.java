@@ -1,9 +1,12 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.UserRegisterDTO;
 import com.example.demo.exception.UserException;
+import com.example.demo.model.Speciality;
 import com.example.demo.model.User;
 import com.example.demo.exception.InvalidEmailException;
 import com.example.demo.exception.InvalidPasswordException;
+import com.example.demo.repository.SpecialityRepository;
 import com.example.demo.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -23,21 +26,30 @@ public class UserService {
 
     private static final int MIN_PASSWORD_LENGTH = 8;
     private final UserRepository userRepository;
+    private final SpecialityRepository specialityRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, SpecialityRepository specialityRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.specialityRepository = specialityRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void register(User user) throws UserException {
-        validateUser(user);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        //FIXME de setat Speciality-ul user-ului pe baza specialtyId-ului primit pe request
+    public void register(UserRegisterDTO userRegisterDTO) throws UserException {
+        validateUser(userRegisterDTO);
+        User user = new User();
+        user.setEmail(userRegisterDTO.getEmail());
+        user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+        user.setName(userRegisterDTO.getName());
+        Optional<Speciality> specialityOptional = specialityRepository.findById(userRegisterDTO.getSpecialityId());
+        if(specialityOptional.isEmpty()) {
+            throw new UserException("User speciality is mandatory!");
+        }
+        user.setSpeciality(specialityOptional.get());
         userRepository.save(user);
     }
 
-    private void validateUser(User user) throws UserException {
+    private void validateUser(UserRegisterDTO user) throws UserException {
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new InvalidEmailException("An account with this email address already exists. " +
                     "Please try logging in or use a different email address");

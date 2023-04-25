@@ -11,7 +11,7 @@ CREATE TABLE Speciality(
 );
 
 CREATE TABLE User_Details(
-                             id int NOT NULL PRIMARY KEY,
+                             id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
                              name varchar(50),
                              email varchar(50) unique,
                              password varchar(100),
@@ -43,7 +43,7 @@ insert into Speciality(id,name,function_id) VALUES (8,'Chirurgie oncologică',4)
 insert into Speciality(id,name,function_id) VALUES (9,'Neonatologie',5);
 insert into Speciality(id,name,function_id) VALUES (10,'Endocrinologie pediatrică',5);
 
-insert into User_Details(id,name,email,password,speciality_id) VALUES (1,'Calin','calin@gmail.com','sdfsfd',1);
+insert into User_Details(name,email,password,speciality_id) VALUES ('Calin','calin@gmail.com','sdfsfd',1);
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 SELECT uuid_generate_v4();
