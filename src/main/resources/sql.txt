@@ -45,6 +45,11 @@ insert into Speciality(id,name,function_id) VALUES (10,'Endocrinologie pediatric
 
 insert into User_Details(id,name,email,password,speciality_id) VALUES (1,'Calin','calin@gmail.com','sdfsfd',1);
 
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+SELECT uuid_generate_v4();
+insert into ResetPasswordRequest(id,requestId,userId) VALUES (1,uuid_generate_v4(),1);
+ALTER TABLE ResetPasswordRequest ADD CONSTRAINT constrId UNIQUE (id);
+
 Create table Diagnosis(
 	id int NOT NULL PRIMARY KEY,
 	inital_diagnosis varchar(50),
@@ -108,8 +113,8 @@ Create table Patient(
 	gender varchar(50) NOT NULL,
 	birth_date date NOT NULL,
 	address varchar(50) NOT NULL,
-	personal_numeric_code int unique NOT NULL,
-	id_series_and_number int NOT NULL,
+	personal_numeric_code varchar(13) unique NOT NULL,
+	id_series_and_number varchar(50) NOT NULL,
 	type_of_insurance_id int,
 	FOREIGN KEY(type_of_insurance_id) REFERENCES Insurance_Type(id) ON DELETE CASCADE,
 	insurance_status_id int,
