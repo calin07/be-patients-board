@@ -1,27 +1,26 @@
 package com.example.demo.model;
+import com.example.demo.model.Speciality;
 import jakarta.persistence.*;
-
 @Entity
-@Table(name = "User_Details")
-public class User {
-
+@Table(name="Room")
+public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", length = 50)
+    @Column(name="name",length = 50)
     private String name;
 
-    @Column(name = "email", length = 50, unique = true)
-    private String email;
-
-    @Column(name = "password", length = 100)
-    private String password;
-
-    @OneToOne
-    @JoinColumn(name = "speciality_id")
+    @ManyToOne
+    @JoinColumn(name="speciality_id")
     private Speciality speciality;
+    public Room() {
+    }
+
+    public Room(String name, Speciality speciality) {
+        this.name = name;
+        this.speciality = speciality;
+    }
 
     public Long getId() {
         return id;
@@ -37,22 +36,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Speciality getSpeciality() {

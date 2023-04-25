@@ -1,21 +1,35 @@
 package com.example.demo.model;
+
 import jakarta.persistence.*;
+
 import java.util.UUID;
 
 @Entity
-@Table(name = "ResetPasswordRequest")
+@Table(name = "Reset_Password_Request")
 public class ResetPasswordRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "requestId")
+    @Column(name = "request_id")
     private UUID requestId = UUID.randomUUID();
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private User user;
+
+    public ResetPasswordRequest(UUID requestId) {
+        this.requestId = requestId;
+    }
+
+    public ResetPasswordRequest(UUID requestId, String newPassword) {
+        this.requestId = requestId;
+    }
+
+    public ResetPasswordRequest() {
+
+    }
 
     public Long getId() {
         return id;

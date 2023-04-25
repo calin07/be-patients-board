@@ -15,7 +15,7 @@ public class Speciality {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "functionId")
+    @JoinColumn(name = "function_id")
     private Function function;
 
     public Long getId() {
