@@ -18,7 +18,7 @@ public class ResetPasswordController {
     @Autowired
     private ResetPasswordService resetPasswordService;
 
-    @PostMapping("/reset-password")
+    @PostMapping("/reset-password") // TODO merge la pachetul resetPasswordRequest cu resetpassword
     public ResponseEntity<Object> sendEmail(@RequestBody EmailRequest emailRequest){
         try{
             resetPasswordService.saveRequest(emailRequest.getEmail());

@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody User user) {
+    public ResponseEntity<?> register(@RequestBody User user) { //FIXME replace with UserDTO
         try {
             userService.register(user);
             return new ResponseEntity<>(HttpStatus.OK);

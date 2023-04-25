@@ -1,29 +1,29 @@
-CREATE TABLE UserDetails(
-	id int NOT NULL PRIMARY KEY,
-	name varchar(50),
-	email varchar(50) unique,
-	password varchar(50),
-	specialityId int,
-	FOREIGN KEY(specialityId) REFERENCES Speciality(id)
-);
-
-CREATE TABLE Speciality(
-	id int NOT NULL PRIMARY KEY,
-	name varchar(50),
-	functionId int,
-	FOREIGN KEY(functionId) REFERENCES Function(id) ON DELETE CASCADE
-);
-
 CREATE TABLE Function(
 	id int NOT NULL PRIMARY KEY,
 	name varchar(50)
 );
 
-CREATE TABLE ResetPasswordRequest(
+CREATE TABLE Speciality(
 	id int NOT NULL PRIMARY KEY,
-	requestId UUID,
-	userId int,
-	FOREIGN KEY(userId) REFERENCES UserDetails(id)
+	name varchar(50),
+	function_id int,
+	FOREIGN KEY(function_id) REFERENCES Function(id) ON DELETE CASCADE
+);
+
+CREATE TABLE User_Details(
+	id int NOT NULL PRIMARY KEY,
+	name varchar(50),
+	email varchar(50) unique,
+	password varchar(100),
+	speciality_id int,
+	FOREIGN KEY(speciality_id) REFERENCES Speciality(id)
+);
+
+CREATE TABLE Reset_Password_Request(
+	id int NOT NULL PRIMARY KEY,
+	request_id UUID,
+	user_id int,
+	FOREIGN KEY(user_id) REFERENCES User_Details(id)
 );
 
 insert into Function(id,name) VALUES (1,'Neurologie');
@@ -32,64 +32,64 @@ insert into Function(id,name) VALUES (3,'Ortopedie');
 insert into Function(id,name) VALUES (4,'Oncologie');
 insert into Function(id,name) VALUES (5,'Pediatrie');
 
-insert into Speciality(id,name,functionId) VALUES (1,'Neuroradiologie',1);
-insert into Speciality(id,name,functionId) VALUES (2,'Neurochirurgie',1);
-insert into Speciality(id,name,functionId) VALUES (3,'Electrofiziologie cardiacă',2);
-insert into Speciality(id,name,functionId) VALUES (4,'Chirurgie cardiacă',2);
-insert into Speciality(id,name,functionId) VALUES (5,'Chirurgie a mâinii și încheieturii mâinii',3);
-insert into Speciality(id,name,functionId) VALUES (6,'Chirurgie a șoldului și a genunchiului',3);
-insert into Speciality(id,name,functionId) VALUES (7,'Radioterapie',4);
-insert into Speciality(id,name,functionId) VALUES (8,'Chirurgie oncologică',4);
-insert into Speciality(id,name,functionId) VALUES (9,'Neonatologie',5);
-insert into Speciality(id,name,functionId) VALUES (10,'Endocrinologie pediatrică',5);
+insert into Speciality(id,name,function_id) VALUES (1,'Neuroradiologie',1);
+insert into Speciality(id,name,function_id) VALUES (2,'Neurochirurgie',1);
+insert into Speciality(id,name,function_id) VALUES (3,'Electrofiziologie cardiacă',2);
+insert into Speciality(id,name,function_id) VALUES (4,'Chirurgie cardiacă',2);
+insert into Speciality(id,name,function_id) VALUES (5,'Chirurgie a mâinii și încheieturii mâinii',3);
+insert into Speciality(id,name,function_id) VALUES (6,'Chirurgie a șoldului și a genunchiului',3);
+insert into Speciality(id,name,function_id) VALUES (7,'Radioterapie',4);
+insert into Speciality(id,name,function_id) VALUES (8,'Chirurgie oncologică',4);
+insert into Speciality(id,name,function_id) VALUES (9,'Neonatologie',5);
+insert into Speciality(id,name,function_id) VALUES (10,'Endocrinologie pediatrică',5);
 
-insert into UserDetails(id,name,email,password,specialityId) VALUES (1,'Calin','calin@gmail.com','sdfsfd',1);
+insert into User_Details(id,name,email,password,speciality_id) VALUES (1,'Calin','calin@gmail.com','sdfsfd',1);
 
 Create table Diagnosis(
 	id int NOT NULL PRIMARY KEY,
-	initalDiagnosis varchar(50),
-	seventyTwoHourDiagnosis varchar(50),
-	finalDiagnosis varchar(50)
+	inital_diagnosis varchar(50),
+	seventy_two_hour_diagnosis varchar(50),
+	final_diagnosis varchar(50)
 );
 
-Create table PatientSurgeryDetails(
+Create table Patient_Surgery_Details(
 	id int NOT NULL PRIMARY KEY,
-	teamOfMedics varchar(50),
+	team_of_medics varchar(50),
 	details varchar(50),
 	Date date
 );
 
-Create table PatientHistoryDetails(
+Create table Patient_History_Details(
 	id int NOT NULL PRIMARY KEY,
-	heredoCollateralAntecedents varchar(50),
-	livingConditions varchar(50),
+	heredo_collateral_antecedents varchar(50),
+	living_conditions varchar(50),
 	behaviors varchar(50),
-	backgroundMedication varchar(50),
-	diseaseHistory varchar(50),
-	generalClinicalExamination varchar(50)
+	background_medication varchar(50),
+	disease_history varchar(50),
+	general_clinical_examination varchar(50)
 ) ;
 
-Create table PatientEvolution(
+Create table Patient_Evolution(
 	id int NOT NULL PRIMARY KEY,
-	evolutionDescription varchar(50),
-	fromDate date,
-	toDate date,
-	evolutionId int,
-	FOREIGN KEY(evolutionId) REFERENCES Patient(id) ON DELETE CASCADE
+	evolution_description varchar(50),
+	from_date date,
+	to_date date,
+	evolution_id int,
+	FOREIGN KEY(evolution_id) REFERENCES Patient(id) ON DELETE CASCADE
 
 );
 
-Create table InsuranceType(
+Create table Insurance_Type(
 	id int NOT NULL PRIMARY KEY,
 	type varchar(50)
 );
 
-Create table InsuranceStatus(
+Create table Insurance_Status(
 	id int NOT NULL PRIMARY KEY,
 	status varchar(50)
 );
 
-Create table AdmissionType(
+Create table Admission_Type(
 	id int NOT NULL PRIMARY KEY,
 	type varchar(50)
 );
@@ -97,34 +97,34 @@ Create table AdmissionType(
 Create table Room(
 	id int NOT NULL PRIMARY KEY,
 	name varchar(50),
-	specialityId int,
-	FOREIGN KEY(specialityId) REFERENCES Speciality(id) ON DELETE CASCADE
+	speciality_id int,
+	FOREIGN KEY(speciality_id) REFERENCES Speciality(id) ON DELETE CASCADE
 );
 
 Create table Patient(
 	id int NOT NULL PRIMARY KEY,
-	firstName varchar(50) NOT NULL,
-	lastName varchar(50) NOT NULL,
+	first_name varchar(50) NOT NULL,
+	last_name varchar(50) NOT NULL,
 	gender varchar(50) NOT NULL,
-	birthDate date NOT NULL,
+	birth_date date NOT NULL,
 	address varchar(50) NOT NULL,
-	personalNumericCode int unique NOT NULL,
-	idSeriesAndNumber int NOT NULL,
-	typeOfInsuranceId int,
-	FOREIGN KEY(typeOfInsuranceId) REFERENCES InsuranceType(id) ON DELETE CASCADE,
-	insuranceStatusId int,
-	FOREIGN KEY(insuranceStatusId) REFERENCES InsuranceStatus(id) ON DELETE CASCADE,
-	typeOfAdmissionId int,
-	FOREIGN KEY(typeOfAdmissionId) REFERENCES AdmissionType(id) ON DELETE CASCADE,
-	specialityId int,
-	FOREIGN KEY(specialityId) REFERENCES Speciality(id) ON DELETE CASCADE,
-	roomId int,
-	FOREIGN KEY(roomId) REFERENCES Room(id) ON DELETE CASCADE,
-	diagnosisId int,
-	FOREIGN KEY(diagnosisId) REFERENCES Diagnosis(id) ON DELETE CASCADE,
-	surgeryDetailsId int,
-	FOREIGN KEY(surgeryDetailsId) REFERENCES PatientSurgeryDetails(id) ON DELETE CASCADE,
-	historyDetailsId int,
-	FOREIGN KEY(historyDetailsId) REFERENCES PatientHistoryDetails(id) ON DELETE CASCADE
+	personal_numeric_code int unique NOT NULL,
+	id_series_and_number int NOT NULL,
+	type_of_insurance_id int,
+	FOREIGN KEY(type_of_insurance_id) REFERENCES Insurance_Type(id) ON DELETE CASCADE,
+	insurance_status_id int,
+	FOREIGN KEY(insurance_status_id) REFERENCES Insurance_Status(id) ON DELETE CASCADE,
+	type_of_admissionId int,
+	FOREIGN KEY(type_of_admission_id) REFERENCES Admission_Type(id) ON DELETE CASCADE,
+	speciality_id int,
+	FOREIGN KEY(speciality_id) REFERENCES Speciality(id) ON DELETE CASCADE,
+	room_id int,
+	FOREIGN KEY(room_id) REFERENCES Room(id) ON DELETE CASCADE,
+	diagnosis_id int,
+	FOREIGN KEY(diagnosis_id) REFERENCES Diagnosis(id) ON DELETE CASCADE,
+	surgery_details_id int,
+	FOREIGN KEY(surgery_details_id) REFERENCES Patient_Surgery_Details(id) ON DELETE CASCADE,
+	history_details_id int,
+	FOREIGN KEY(history_details_id) REFERENCES Patient_History_Details(id) ON DELETE CASCADE
 );
 

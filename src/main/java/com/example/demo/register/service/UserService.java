@@ -1,7 +1,6 @@
 package com.example.demo.register.service;
 
 import com.example.demo.model.User;
-import com.example.demo.register.exception.ConfirmPasswordException;
 import com.example.demo.register.exception.InvalidEmailException;
 import com.example.demo.register.exception.InvalidPasswordException;
 import com.example.demo.register.exception.UserException;
@@ -26,6 +25,7 @@ public class UserService {
     public void register(User user) throws UserException {
         validateUser(user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //FIXME de setat Speciality-ul user-ului pe baza specialtyId-ului primit pe request
         userRepository.save(user);
     }
 
@@ -34,10 +34,11 @@ public class UserService {
             throw new InvalidEmailException("An account with this email address already exists. " +
                     "Please try logging in or use a different email address");
         }
-        if (!user.getPassword().equals(user.getConfirmPassword())) {
-            throw new ConfirmPasswordException("Passwords do not match. " +
-                    "Please make sure you've entered the same password in both fields");
-        }
+//      FIXME de luat confirm password din DTO-ul venit din request, nu din entitate
+//       if (!user.getPassword().equals(user.getConfirmPassword())) {
+//            throw new ConfirmPasswordException("Passwords do not match. " +
+//                    "Please make sure you've entered the same password in both fields");
+//        }
         if (user.getPassword().length() < MIN_PASSWORD_LENGTH) {
             throw new InvalidPasswordException("Password must have at least " + MIN_PASSWORD_LENGTH + " characters");
         }

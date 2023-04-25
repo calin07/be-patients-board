@@ -5,13 +5,13 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="PatientSurgeryDetails")
+@Table(name="Patient_Surgery_Details")
 public class PatientSurgeryDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name="teamOfMedics",length = 50)
+    @Column(name="team_of_medics",length = 50)
     private String teamOfMedics;
 
     @Column(name="details",length = 50)

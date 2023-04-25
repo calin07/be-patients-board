@@ -5,19 +5,18 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "ResetPasswordRequest")
+@Table(name = "Reset_Password_Request")
 public class ResetPasswordRequest {
-    private String newPassword;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "requestId")
+    @Column(name = "request_id")
     private UUID requestId = UUID.randomUUID();
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public ResetPasswordRequest(UUID requestId) {
@@ -26,19 +25,10 @@ public class ResetPasswordRequest {
 
     public ResetPasswordRequest(UUID requestId, String newPassword) {
         this.requestId = requestId;
-        this.newPassword = newPassword;
     }
 
     public ResetPasswordRequest() {
 
-    }
-
-    public String getNewPassword() {
-        return newPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
     }
 
     public Long getId() {

@@ -9,13 +9,13 @@ public class Diagnosis {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name="initalDiagnosis",length = 50)
+    @Column(name="inital_diagnosis",length = 50)
     private String initalDiagnosis;
 
-    @Column(name="seventyTwoHourDiagnosis",length = 50)
+    @Column(name="seventy_two_hour_diagnosis",length = 50)
     private String seventyTwoHourDiagnosis;
 
-    @Column(name="finalDiagnosis",length = 50)
+    @Column(name="final_diagnosis",length = 50)
     private String finalDiagnosis;
 
     public Diagnosis() {

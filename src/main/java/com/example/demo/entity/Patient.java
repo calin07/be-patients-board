@@ -13,59 +13,59 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "firstName", length = 50,nullable = false)
+    @Column(name = "first_name", length = 50,nullable = false)
     private String firstName;
 
-    @Column(name = "lastName", length = 50,nullable = false)
+    @Column(name = "last_name", length = 50,nullable = false)
     private String lastName;
 
-    @Column(name = "birthDate",nullable = false)
+    @Column(name = "birth_date",nullable = false)
     private Date birthDate;
 
     @Column(name = "address", length = 50,nullable = false)
     private String address;
 
-    @Column(name = "personalNumericCode", unique = true,nullable = false)
+    @Column(name = "personal_numeric_code", unique = true,nullable = false)
     private double personalNumericCode;
 
-    @Column(name = "idSeriesAndNumber",nullable = false)
+    @Column(name = "id_series_and_number",nullable = false)
     private double idSeriesAndNumber;
 
     @ManyToOne
-    @JoinColumn(name = "typeOfInsuranceId")
+    @JoinColumn(name = "type_of_insurance_id")
     private InsuranceStatus typeOfInsurance;
 
     @ManyToOne
-    @JoinColumn(name = "insuranceStatusId")
+    @JoinColumn(name = "insurance_status_id")
     private InsuranceStatus insuranceStatus;
 
     @ManyToOne
-    @JoinColumn(name = "typeOfAdmissionId")
+    @JoinColumn(name = "type_of_admission_id")
     private AdmissionType admissionType;
 
     @ManyToOne
-    @JoinColumn(name = "specialityId")
+    @JoinColumn(name = "speciality_id")
     private Speciality speciality;
 
     @ManyToOne
-    @JoinColumn(name = "roomId")
+    @JoinColumn(name = "room_id")
     private Room room;
 
     @OneToOne
-    @JoinColumn(name = "diagnosisId")
+    @JoinColumn(name = "diagnosis_id")
     private Diagnosis diagnosis;
 
     @OneToOne
-    @JoinColumn(name = "surgeryDetailsId")
+    @JoinColumn(name = "surgery_details_id")
     private PatientSurgeryDetails surgeryDetails;
 
 
     @OneToOne
-    @JoinColumn(name = "historyDetailsId")
+    @JoinColumn(name = "history_details_id")
     private PatientHistoryDetails patientHistoryDetails;
 
     @OneToMany
-    @JoinColumn(name = "evolutionId")
+    @JoinColumn(name = "evolution_id")
     private List<PatientEvolution> evolution = new ArrayList<>();
 
     public void addEvolution(PatientEvolution patientEvolution){

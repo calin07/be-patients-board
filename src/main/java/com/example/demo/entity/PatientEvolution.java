@@ -5,20 +5,20 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="PatientEvolution")
+@Table(name="Patient_Evolution")
 public class PatientEvolution {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name="evolutionDescription",length = 50)
+    @Column(name="evolution_description",length = 50)
     private String evolutionDescription;
 
-    @Column(name = "fromDate")
+    @Column(name = "from_date")
     private Date fromDate;
 
-    @Column(name="toDate")
+    @Column(name="to_date")
     private Date toDate;
 
     public PatientEvolution() {

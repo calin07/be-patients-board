@@ -76,7 +76,8 @@ public class ResetPasswordService {
         ResetPasswordRequest resetPassword = findByRequestId(request.getRequestId());
 
         // Actualizam parola utilizatorului
-        updatePassword(resetPassword.getUser(), request.getNewPassword());
+//        FIXME de folosit newPassword din noul DTO ResetPasswordRequest
+//        updatePassword(resetPassword.getUser(), request.getNewPassword());
 
         // Salvam parola noua in baza de date
         savePassword(resetPassword.getUser());

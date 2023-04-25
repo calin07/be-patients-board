@@ -3,28 +3,28 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "PatientHistoryDetails")
+@Table(name = "Patient_History_Details")
 public class PatientHistoryDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "heredoCollateralAntecedents",length = 50)
+    @Column(name = "heredo_collateral_antecedents",length = 50)
     private String heredoCollateralAntecedents;
 
-    @Column(name="livingConditions",length = 50)
+    @Column(name="living_conditions",length = 50)
     private String livingConditions;
 
     @Column(name="behaviors",length = 50)
     private String behaviors;
 
-    @Column(name="backgroundMedication",length = 50)
+    @Column(name="background_medication",length = 50)
     private String backgroundMedication;
 
-    @Column(name="diseaseHistory",length = 50)
+    @Column(name="disease_history",length = 50)
     private String diseaseHistory;
 
-    @Column(name="generalClinicalExamination",length = 50)
+    @Column(name="general_clinical_examination",length = 50)
     private String generalClinicalExamination;
 
 

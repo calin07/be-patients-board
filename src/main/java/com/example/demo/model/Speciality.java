@@ -13,7 +13,7 @@ public class Speciality {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "functionId")
+    @JoinColumn(name = "function_id")
     private Function function;
 
     public Long getId() {

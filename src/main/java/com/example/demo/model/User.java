@@ -2,7 +2,7 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "UserDetails")
+@Table(name = "User_Details")
 public class User {
 
     @Id
@@ -16,11 +16,11 @@ public class User {
     @Column(name = "email", length = 50, unique = true)
     private String email;
 
-    @Column(name = "password", length = 50)
+    @Column(name = "password", length = 100)
     private String password;
 
     @OneToOne
-    @JoinColumn(name = "specialityId")
+    @JoinColumn(name = "speciality_id")
     private Speciality speciality;
 
     public Long getId() {
@@ -61,15 +61,5 @@ public class User {
 
     public void setSpeciality(Speciality speciality) {
         this.speciality = speciality;
-    }
-
-    private String confirmPassword;
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 }

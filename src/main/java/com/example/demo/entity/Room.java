@@ -12,7 +12,7 @@ public class Room {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="specialityId")
+    @JoinColumn(name="speciality_id")
     private Speciality speciality;
     public Room() {
     }

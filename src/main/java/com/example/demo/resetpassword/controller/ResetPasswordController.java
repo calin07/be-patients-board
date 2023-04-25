@@ -19,7 +19,7 @@ public class ResetPasswordController {
 
     // Endpoint-ul pentru resetarea parolei
     @PutMapping("/user/reset-password")
-    public ResponseEntity resetPassword(@RequestBody ResetPasswordRequest request) {
+    public ResponseEntity resetPassword(@RequestBody ResetPasswordRequest request) { // FIXME de folosit un DTO in loc de entitate
         try {
             resetPasswordService.resetPassword(request);
 
