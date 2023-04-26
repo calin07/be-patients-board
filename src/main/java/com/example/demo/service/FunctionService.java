@@ -1,11 +1,7 @@
-package com.example.demo.functions.service;
+package com.example.demo.service;
 
-import com.example.demo.functions.repositories.FunctionRepository;
-import com.example.demo.functions.repositories.SpecialityRepository;
 import com.example.demo.model.Function;
-import com.example.demo.model.Speciality;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.repository.FunctionRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
