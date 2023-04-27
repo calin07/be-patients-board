@@ -47,7 +47,7 @@ insert into User_Details(name,email,password,speciality_id) VALUES ('Calin','cal
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 SELECT uuid_generate_v4();
-insert into Reset_Password_Request(id,request_id,user_id) VALUES (1,uuid_generate_v4(),1);
+insert into Reset_Password_Request(id,request_id,user_id) VALUES (2,"550e8400-e29b-41d4-a716-446655440000",1);
 ALTER TABLE Reset_Password_Request ADD CONSTRAINT constrId UNIQUE (id);
 
 Create table Diagnosis(

@@ -9,6 +9,7 @@ import com.example.demo.repository.ResetPasswordRepository;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -29,6 +30,8 @@ public class ResetPasswordService {
 
     @Autowired
     private EmailSenderService emailSenderService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public void saveRequest(String email) throws ResetPasswordException, MessagingException {
         Optional<User> user = userRepository.findByEmail(email);
@@ -80,7 +83,6 @@ public class ResetPasswordService {
         }
 
         // Criptăm parola folosind BCrypt
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(newPassword);
 
         // Actualizam parola utilizatorului
