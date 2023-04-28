@@ -12,7 +12,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.time.Instant;
@@ -63,11 +62,9 @@ public class UserService {
             throw new InvalidPasswordException("Password must have at least " + MIN_PASSWORD_LENGTH + " characters");
         }
     }
-
-    public String login(String email, String password) throws com.example.demo.exception.UserException {
+    public String login(String email, String password) throws UserException {
         Optional<User> user = userRepository.findByEmail(email);
-        String passwordEncoder1 = passwordEncoder.encode(password);
-        if (user.isPresent() && passwordEncoder1.equals(user.get().getPassword())) {
+        if (user.isPresent() && passwordEncoder.matches(password,user.get().getPassword())) {
             //Jetonul JWT semnat cu HMAC
             String secret = "asdfSFS34wfsdfsdfSDSD32dfsddDDerQSNCK34SOWEK5354fdgdf4";
             Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(secret),
@@ -81,7 +78,7 @@ public class UserService {
                     .signWith(hmacKey)
                     .compact();
         } else {
-            throw new com.example.demo.exception.UserException("Please check your password and account name and try again");
+            throw new UserException("Please check your password and account name and try again");
         }
     }
 }
