@@ -1,11 +1,10 @@
-package com.example.demo.functions.controller;
+package com.example.demo.controller;
 
-import com.example.demo.functions.service.FunctionService;
+import com.example.demo.service.FunctionService;
 import com.example.demo.model.Function;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
