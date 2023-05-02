@@ -11,7 +11,7 @@ import java.util.List;
 public class InsuranceTypeService {
     @Autowired
     private  InsuranceTypeRepository insuranceTypeRepository;
-    public List<InsuranceTypeDTO> getfindAllInsuranceType(){
+    public List<InsuranceTypeDTO> getAllInsuranceTypes(){
         List<InsuranceTypeDTO> typeDTOList=new ArrayList<>();
         List<InsuranceType> insuranceTypes=insuranceTypeRepository.findAll();
         for(InsuranceType insuranceType:insuranceTypes){

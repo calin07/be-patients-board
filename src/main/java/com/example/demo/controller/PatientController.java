@@ -12,8 +12,8 @@ import java.util.List;
 public class PatientController {
     @Autowired
     private InsuranceTypeService insuranceTypeService;
-    @GetMapping("/typeOfInsurances")
-    public List<InsuranceTypeDTO> getStatus(){
-        return insuranceTypeService.getfindAllInsuranceType();
+    @GetMapping("/typesOfInsurance")
+    public List<InsuranceTypeDTO>  getTypesOfInsurance(){
+        return insuranceTypeService.getAllInsuranceTypes();
     }
 }
