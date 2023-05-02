@@ -7,14 +7,19 @@ import com.example.demo.exception.ResetPasswordException;
 import com.example.demo.repository.ResetPasswordRepository;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.UUID;
 
 @Service
 public class ResetPasswordService {
+
+    @Value("${server.port}")
+    private int serverPort;
 
     // Injectam repository-ul de resetare parola
     @Autowired
@@ -38,7 +43,7 @@ public class ResetPasswordService {
             UUID requestId = UUID.nameUUIDFromBytes((user.get().getEmail() + dateTime).getBytes());
             passwordRequest.setRequestId(requestId);
             resetPasswordRepository.save(passwordRequest);
-            String link = "http://localhost:8090/user/reset-password?requestId=" + requestId; // TODO de scos in proprietate statica
+            String link = "http://localhost:"+serverPort+"/user/reset-password?requestId=" + requestId; // TODO de scos in proprietate statica
             String text = "<p>Pentru resetarea parolei,va rugam sa accesati acest <a href=\"" + link + "\">" + "link" + "</a>.</p>";
             emailSenderService.sendEmail(email, "Reset Password", text);
         }
