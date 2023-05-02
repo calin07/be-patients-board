@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.ResetPasswordRequestDTO;
 import com.example.demo.model.ResetPasswordRequest;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
@@ -7,6 +8,9 @@ import com.example.demo.exception.ResetPasswordException;
 import com.example.demo.repository.ResetPasswordRepository;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,6 +19,8 @@ import java.util.UUID;
 
 @Service
 public class ResetPasswordService {
+    @Value("${reset.password.link}")
+    private static final String RESET_PASSWORD_LINK = "";
 
     // Injectam repository-ul de resetare parola
     @Autowired
@@ -26,6 +32,8 @@ public class ResetPasswordService {
 
     @Autowired
     private EmailSenderService emailSenderService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public void saveRequest(String email) throws ResetPasswordException, MessagingException {
         Optional<User> user = userRepository.findByEmail(email);
@@ -38,23 +46,23 @@ public class ResetPasswordService {
             UUID requestId = UUID.nameUUIDFromBytes((user.get().getEmail() + dateTime).getBytes());
             passwordRequest.setRequestId(requestId);
             resetPasswordRepository.save(passwordRequest);
-            String link = "http://localhost:8090/user/reset-password?requestId=" + requestId; // TODO de scos in proprietate statica
+            String link = RESET_PASSWORD_LINK + requestId;
             String text = "<p>Pentru resetarea parolei,va rugam sa accesati acest <a href=\"" + link + "\">" + "link" + "</a>.</p>";
             emailSenderService.sendEmail(email, "Reset Password", text);
         }
     }
 
-    public void resetPassword(ResetPasswordRequest request) throws ResetPasswordException {
+    public void resetPassword(ResetPasswordRequestDTO request) throws ResetPasswordException {
         // Cautam cererea de resetare a parolei dupa requestId
         ResetPasswordRequest resetPassword = findByRequestId(request.getRequestId());
 
         // Actualizam parola utilizatorului
-//        FIXME de folosit newPassword din noul DTO ResetPasswordRequest
-//        updatePassword(resetPassword.getUser(), request.getNewPassword());
+        updatePassword(resetPassword.getUser(), request.getNewPassword());
 
         // Salvam parola noua in baza de date
         savePassword(resetPassword.getUser());
     }
+
 
     // Metoda pentru a cauta cererea de resetare a parolei dupa requestId
     private ResetPasswordRequest findByRequestId(UUID requestId) throws ResetPasswordException {
@@ -76,8 +84,11 @@ public class ResetPasswordService {
             throw new ResetPasswordException("Parola invalida");
         }
 
+        // Criptăm parola folosind BCrypt
+        String hashedPassword = passwordEncoder.encode(newPassword);
+
         // Actualizam parola utilizatorului
-        user.setPassword(newPassword); // TODO de criptat parola
+        user.setPassword(hashedPassword);
     }
 
     // Metoda pentru a salva parola actualizata in baza de date
