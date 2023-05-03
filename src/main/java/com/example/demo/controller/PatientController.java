@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.AdmissionTypeDTO;
+import com.example.demo.dto.InsuranceStatusDTO;
 import com.example.demo.model.AdmissionType;
 import com.example.demo.model.Function;
 import com.example.demo.model.InsuranceStatus;
@@ -24,12 +26,12 @@ public class PatientController {
     }
 
     @GetMapping("/typeOfAdmissions")
-    public List<AdmissionType> getAdmissionTypes() {
+    public List<AdmissionTypeDTO> getAdmissionTypes() {
         return admissionTypeService.getAdmissionTypes();
     }
 
     @GetMapping("/insuranceStatus")
-    public List<InsuranceStatus> getInsuranceStatus() {
+    public List<InsuranceStatusDTO> getInsuranceStatus() {
         return insuranceStatusService.getInsuranceStatus();
     }
 }

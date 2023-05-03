@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.RoomDTO;
 import com.example.demo.model.Room;
 import com.example.demo.service.RoomService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class HospitalController {
     }
 
     @GetMapping("/rooms")
-    private List<Room> getRooms() {
+    private List<RoomDTO> getRooms() {
         return roomService.getRooms();
     }
 }
