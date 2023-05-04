@@ -123,6 +123,7 @@ Create table Patient(
                         FOREIGN KEY(history_details_id) REFERENCES Patient_History_Details(id) ON DELETE CASCADE
 );
 
+INSERT INTO Patient(id,first_name,last_name,gender,birth_date,address,personal_numeric_code,id_series_and_number,admission_date) VALUES (1,'Ana','Popescu','Women','2023-06-01','Bucharest','6123467891234','PX345667','2023-05-29');
 Create table Patient_Evolution(
                                   id int NOT NULL PRIMARY KEY,
                                   evolution_description varchar(50),
@@ -133,3 +134,8 @@ Create table Patient_Evolution(
 
 );
 
+ALTER TABLE Patient
+ADD COLUMN admission_date date;
+
+ALTER TABLE Patient
+ALTER COLUMN admission_date SET NOT NULL;
