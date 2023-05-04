@@ -123,9 +123,10 @@ Create table Patient(
                         FOREIGN KEY(history_details_id) REFERENCES Patient_History_Details(id) ON DELETE CASCADE
 );
 
-INSERT INTO Patient(id,first_name,last_name,gender,birth_date,address,personal_numeric_code,id_series_and_number,admission_date) VALUES (1,'Smaranda','Popescu','Women','2023-06-01','Bucharest','6123467891234','PX345667','2023-05-29');
+INSERT INTO Patient(id,first_name,last_name,gender,birth_date,address,personal_numeric_code,id_series_and_number,admission_date) VALUES (1,'Ana','Popescu','Women','2023-06-01','Bucharest','6123467891234','PX345667','2023-05-29');
 INSERT INTO Patient(id,first_name,last_name,gender,birth_date,address,personal_numeric_code,id_series_and_number,admission_date) VALUES (2,'Maria','Ionescu','Women','2021-05-01','Iasi','6678923401231','PX112032','2023-04-10');
 INSERT INTO Patient(id,first_name,last_name,gender,birth_date,address,personal_numeric_code,id_series_and_number,admission_date) VALUES (3,'Mihai','Rotariu','Man','2020-01-10','Ploiesti','5020502981234','PX998234','2023-01-29');
+INSERT INTO Patient(id,first_name,last_name,gender,birth_date,address,personal_numeric_code,id_series_and_number,admission_date) VALUES (4,'Smaranda','Pop','Women','2023-03-12','Campina','6543278901238','PX098754','2022-01-29');
 
 UPDATE Patient
 SET speciality_id = 1
@@ -142,6 +143,18 @@ WHERE id = 2;
 UPDATE Patient
 SET room_id = 1
 WHERE id = 3;
+
+UPDATE Patient
+SET speciality_id = 2
+WHERE id = 1;
+
+UPDATE Patient
+SET speciality_id = 2
+WHERE id = 4;
+
+UPDATE Patient
+SET room_id = 1
+WHERE id = 4;
 
 Create table Patient_Evolution(
                                   id int NOT NULL PRIMARY KEY,
