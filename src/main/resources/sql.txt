@@ -133,9 +133,6 @@ Create table Patient_Evolution(
 
 );
 
-
-
-
 -- For type_of_insurance_id in Patient table
 INSERT INTO Insurance_Type (id, type) VALUES (1, 'Public');
 INSERT INTO Insurance_Type (id, type) VALUES (2, 'Private');
@@ -173,6 +170,9 @@ INSERT INTO Patient_History_Details (id, heredo_collateral_antecedents, living_c
 INSERT INTO Patient_History_Details (id, heredo_collateral_antecedents, living_conditions, behaviors, background_medication, disease_history, general_clinical_examination) VALUES (3, 'No significant heredo-collateral antecedents', 'Lives in a house with good conditions', 'Non-smoker, drinks occasionally', 'None', 'No significant medical history', 'Normal clinical examination');
 
 
-INSERT INTO Patient(id, first_name, last_name, gender, birth_date, address, personal_numeric_code, id_series_and_number, type_of_insurance_id, insurance_status_id, type_of_admission_id, speciality_id, room_id, diagnosis_id, surgery_details_id, history_details_id) VALUES (1, 'John', 'Doe', 'Male', '1990-01-01', '123 Main St', '1234567890123', 'AB123456', 1, 1, 1, 1, 1, 1, 1, 1);
-INSERT INTO Patient(id, first_name, last_name, gender, birth_date, address, personal_numeric_code, id_series_and_number, type_of_insurance_id, insurance_status_id, type_of_admission_id, speciality_id, room_id, diagnosis_id, surgery_details_id, history_details_id) VALUES (2, 'Jane', 'Smith', 'Female', '1985-05-05', '456 Elm St', '9876543210123', 'CD987654', 2, 2, 2, 2, 2, 2, 2, 2);
-INSERT INTO Patient(id, first_name, last_name, gender, birth_date, address, personal_numeric_code, id_series_and_number, type_of_insurance_id, insurance_status_id, type_of_admission_id, speciality_id, room_id, diagnosis_id, surgery_details_id, history_details_id) VALUES (3, 'Bob', 'Johnson', 'Male', '1975-12-31', '789 Oak St', '4567890123456', 'EF456789', 3, 2, 2, 3, 3, 3, 3, 3);
+ALTER TABLE Patient
+ADD COLUMN admission_date date NOT NULL;
+
+INSERT INTO Patient(id, first_name, last_name, gender, birth_date, address, personal_numeric_code, id_series_and_number, type_of_insurance_id, insurance_status_id, type_of_admission_id, speciality_id, room_id, diagnosis_id, surgery_details_id, history_details_id,admission_date) VALUES (1, 'John', 'Doe', 'Male', '1990-01-01', '123 Main St', '1234567890123', 'AB123456', 1, 1, 1, 1, 1, 1, 1, 1,'2023-02-12');
+INSERT INTO Patient(id, first_name, last_name, gender, birth_date, address, personal_numeric_code, id_series_and_number, type_of_insurance_id, insurance_status_id, type_of_admission_id, speciality_id, room_id, diagnosis_id, surgery_details_id, history_details_id,admission_date) VALUES (2, 'Jane', 'Smith', 'Female', '1985-05-05', '456 Elm St', '9876543210123', 'CD987654', 2, 2, 2, 2, 2, 2, 2, 2,'2023-04-15');
+INSERT INTO Patient(id, first_name, last_name, gender, birth_date, address, personal_numeric_code, id_series_and_number, type_of_insurance_id, insurance_status_id, type_of_admission_id, speciality_id, room_id, diagnosis_id, surgery_details_id, history_details_id,admission_date) VALUES (3, 'Bob', 'Johnson', 'Male', '1975-12-31', '789 Oak St', '4567890123456', 'EF456789', 3, 2, 2, 3, 3, 3, 3, 3,'2023-01-10');

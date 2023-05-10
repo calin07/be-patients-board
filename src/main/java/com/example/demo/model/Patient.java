@@ -1,33 +1,34 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="Patient")
+@Table(name = "Patient")
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name", length = 50,nullable = false)
+    @Column(name = "first_name", length = 50, nullable = false)
     private String firstName;
 
-    @Column(name = "last_name", length = 50,nullable = false)
+    @Column(name = "last_name", length = 50, nullable = false)
     private String lastName;
 
-    @Column(name = "birth_date",nullable = false, columnDefinition = "DATE")
+    @Column(name = "birth_date", nullable = false, columnDefinition = "DATE")
     private Date birthDate;
 
-    @Column(name = "address", length = 50,nullable = false)
+    @Column(name = "address", length = 50, nullable = false)
     private String address;
 
-    @Column(name = "personal_numeric_code", unique = true,nullable = false)
+    @Column(name = "personal_numeric_code", unique = true, nullable = false)
     private String personalNumericCode;
 
-    @Column(name = "id_series_and_number",nullable = false)
+    @Column(name = "id_series_and_number", nullable = false)
     private String idSeriesAndNumber;
 
     @ManyToOne
@@ -67,20 +68,39 @@ public class Patient {
     @JoinColumn(name = "evolution_id")
     private List<PatientEvolution> evolution = new ArrayList<>();
 
-    public void addEvolution(PatientEvolution patientEvolution){
+    @Column(name = "admission_date", nullable = false, columnDefinition = "DATE")
+    private Date admissionDate;
+
+    public void addEvolution(PatientEvolution patientEvolution) {
         evolution.add(patientEvolution);
     }
 
     public Patient() {
     }
 
-    public Patient(String firstName, String lastName, Date birthDate, String address, String personalNumericCode, String idSeriesAndNumber) {
+    public Patient(String firstName,
+                   String lastName,
+                   Date birthDate,
+                   String address,
+                   String personalNumericCode,
+                   String idSeriesAndNumber,
+                   Date admissionDate)
+    {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.address = address;
         this.personalNumericCode = personalNumericCode;
         this.idSeriesAndNumber = idSeriesAndNumber;
+        this.admissionDate = admissionDate;
+    }
+
+    public Date getAdmissionDate() {
+        return admissionDate;
+    }
+
+    public void setAdmissionDate(Date admissionDate) {
+        this.admissionDate = admissionDate;
     }
 
     public Long getId() {
@@ -210,4 +230,5 @@ public class Patient {
     public void setEvolution(List<PatientEvolution> evolution) {
         this.evolution = evolution;
     }
+
 }
