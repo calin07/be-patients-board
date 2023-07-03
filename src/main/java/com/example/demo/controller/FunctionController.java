@@ -9,7 +9,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class FunctionController {
-
     private final FunctionService functionService;
 
     public FunctionController(FunctionService functionService) {

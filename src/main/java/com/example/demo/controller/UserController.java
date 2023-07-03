@@ -1,5 +1,4 @@
 package com.example.demo.controller;
-
 import com.example.demo.dto.UserRegisterDTO;
 import com.example.demo.dto.UserRequestDTO;
 import com.example.demo.exception.ConfirmPasswordException;
@@ -23,7 +22,6 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserRegisterDTO user) {
         try {

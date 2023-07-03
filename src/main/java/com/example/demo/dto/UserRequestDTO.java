@@ -3,7 +3,6 @@ package com.example.demo.dto;
 public class UserRequestDTO {
     private String email;
     private String password;
-
     public UserRequestDTO(String email, String password) {
         this.email = email;
         this.password = password;

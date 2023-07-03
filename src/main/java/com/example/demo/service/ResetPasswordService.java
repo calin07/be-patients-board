@@ -17,7 +17,6 @@ import java.util.UUID;
 
 @Service
 public class ResetPasswordService {
-
     @Value("${server.port}")
     private int serverPort;
 
