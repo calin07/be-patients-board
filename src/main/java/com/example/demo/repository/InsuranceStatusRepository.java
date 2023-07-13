@@ -1,9 +1,9 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.Function;
+import com.example.demo.model.InsuranceStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FunctionRepository extends JpaRepository<Function, Long> {
+public interface InsuranceStatusRepository extends JpaRepository<InsuranceStatus, Long> {
 }
